@@ -1,5 +1,6 @@
 package ca.uhn.fhir.jpa.demo;
 
+import java.sql.SQLException;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
@@ -51,10 +52,16 @@ public class FhirServerConfig extends BaseJavaConfigDstu3 {
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
 		BasicDataSource retVal = new BasicDataSource();
-		retVal.setDriver(new org.apache.derby.jdbc.EmbeddedDriver());
-		retVal.setUrl("jdbc:derby:directory:target/jpaserver_derby_files;create=true");
-		retVal.setUsername("");
-		retVal.setPassword("");
+		try{
+
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		retVal.setDriver(new com.mysql.jdbc.Driver());
+		retVal.setUrl("jdbc:mysql://localhost:3306/hapifhir");
+		retVal.setUsername("fhiruser");
+		retVal.setPassword("fhir12345");
 		return retVal;
 	}
 
