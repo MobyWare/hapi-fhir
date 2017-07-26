@@ -53,12 +53,12 @@ public class FhirServerConfig extends BaseJavaConfigDstu3 {
 	public DataSource dataSource() {
 		BasicDataSource retVal = new BasicDataSource();
 		try{
-
+			retVal.setDriver(new com.mysql.jdbc.Driver());
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
-		retVal.setDriver(new com.mysql.jdbc.Driver());
+		
 		retVal.setUrl("jdbc:mysql://localhost:3306/hapifhir");
 		retVal.setUsername("fhiruser");
 		retVal.setPassword("fhir12345");
